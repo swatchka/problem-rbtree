@@ -64,6 +64,8 @@ node_t *rbtree_insert(rbtree *t, const key_t key) {
       n->left = n->right = t->nil;
       n->color = RBTREE_RED;
     }
+    // RB트리 속성 조정 판별 필요
+    // 캐이스별 별도 조정 함수 필요
 
   return t->root;
 }
