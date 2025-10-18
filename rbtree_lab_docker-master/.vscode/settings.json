@@ -59,5 +59,6 @@
   "files.associations": {
     "*.py": "python",
     "rbtree.h": "c"
-  }
+  },
+  "C_Cpp.dimInactiveRegions": false
 }

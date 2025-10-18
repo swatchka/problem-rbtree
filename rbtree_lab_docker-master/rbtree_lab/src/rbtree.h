@@ -8,15 +8,15 @@ typedef enum { RBTREE_RED, RBTREE_BLACK } color_t;
 typedef int key_t;
 
 typedef struct node_t {
-  color_t color;
-  key_t key;
-  struct node_t *parent, *left, *right;
+  color_t color; // 노드의 색상
+  key_t key; // 노드의 값
+  struct node_t *parent, *left, *right; // 부모, 왼쪽 자식, 오른쪽 자식
 } node_t;
 
 typedef struct {
-  node_t *root;
+  node_t *root;  // 트리의 루트 노
   node_t *nil;  // for sentinel
-} rbtree;
+} rbtree; // 실제 트리
 
 rbtree *new_rbtree(void);
 void delete_rbtree(rbtree *);

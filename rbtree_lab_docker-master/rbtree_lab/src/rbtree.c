@@ -3,11 +3,15 @@
 #include <stdlib.h>
 
 rbtree *new_rbtree(void) {
-  rbtree *p = (rbtree *)calloc(1, sizeof(rbtree));
-  // TODO: initialize struct if needed
-  // rbtree node_t;
-  // p->nil->color = RBTREE_BLACK;
-  // p->root = p->nil;
+  rbtree *p = (rbtree *)malloc(sizeof(rbtree)); // 트리 전체 선언(생성) 트리 자체의 힙 생성
+  p->nil = (node_t *)malloc(sizeof(node_t)); // 닐 노드 동적 할당
+  p->root = NULL;
+
+  p->nil->color = RBTREE_BLACK;
+  p->nil->key = 0; // 값이 나중에 들어갈것으로 예상
+  p->nil->parent = p->root;
+  p->nil->right = p->nil;
+  p->nil->left = p->nil;
   return p;
 }
 
@@ -18,6 +22,15 @@ void delete_rbtree(rbtree *t) {
 
 node_t *rbtree_insert(rbtree *t, const key_t key) {
   // TODO: implement insert
+  // BST 마냥 삽입
+  // 색 조정
+  node_t *n = (node_t *)malloc(sizeof(node_t));
+  n->key = key;
+  n->left = n->right = n->parent = t->nil;
+  n->color = RBTREE_BLACK;
+  if (t->root == NULL){
+    t->root = n;
+  }
   return t->root;
 }
 
