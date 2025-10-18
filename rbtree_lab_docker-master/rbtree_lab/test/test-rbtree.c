@@ -30,8 +30,8 @@ void test_insert_single(const key_t key)
 #ifdef SENTINEL
   assert(p->left == t->nil);
   assert(p->right == t->nil);
-  assert(p->parent == t->nil);
-#else
+  assert(p->parent == t->nil); // 여기까지 성공함
+#else 
   assert(p->left == NULL);
   assert(p->right == NULL);
   assert(p->parent == NULL);
