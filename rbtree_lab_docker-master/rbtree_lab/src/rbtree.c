@@ -72,17 +72,35 @@ node_t *rbtree_insert(rbtree *t, const key_t key) {
 
 node_t *rbtree_find(const rbtree *t, const key_t key) {
   // TODO: implement find
-  return t->root;
+  node_t *cur = t->root;
+  while (cur->key != key && cur != t->nil){
+      if (key > cur->key) {
+        cur = cur->right;
+      }
+      else if(key < cur->key) {
+        cur = cur->left;
+      }
+      else{
+        break;
+      }
+  }
+  return cur;
 }
 
 node_t *rbtree_min(const rbtree *t) {
-  // TODO: implement find
-  return t->root;
+  node_t *cur = t->root;
+  while (cur->left != t->nil){
+      cur = cur->left;
+  }
+  return cur;
 }
 
 node_t *rbtree_max(const rbtree *t) {
-  // TODO: implement find
-  return t->root;
+  node_t *cur = t->root;
+  while (cur->right != t->nil){
+      cur = cur->right;
+  }
+  return cur;
 }
 
 int rbtree_erase(rbtree *t, node_t *p) {
@@ -93,4 +111,13 @@ int rbtree_erase(rbtree *t, node_t *p) {
 int rbtree_to_array(const rbtree *t, key_t *arr, const size_t n) {
   // TODO: implement to_array
   return 0;
+}
+
+
+void insert_case3() { // 빨간색 노드가 직선 연속으로 두 번 나올때
+
+}
+
+void insert_case2() { // 빨간색 노드가 꺽여서 연속 두 번 나올때
+
 }
