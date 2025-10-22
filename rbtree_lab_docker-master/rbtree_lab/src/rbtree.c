@@ -33,40 +33,40 @@ node_t *rbtree_insert(rbtree *t, const key_t key) {
   node_t *parent = t->nil;
   node_t *cur = t->root; // 루트부터 시작
   
-    if (t->root == t->nil){ // 루트가 비었을때
-      t->root = n;
-      n->color = RBTREE_BLACK;
-      n->parent = t->nil;
-      return n;
-    }
-    else{ 
-      node_t *parent = t->nil;
-      while (cur != t->nil && cur != NULL){
-        if (key > cur->key){ // 새로들어온 값이 현재 노드의 값보다 크면
-          parent = cur;
-          cur = cur->right; // 이동
-          if (cur == t->nil){
-            n->parent = parent;
-            parent->right = n;
-            break;
-          }
-        }
-        else if (key < cur->key){ // 새로들어온 값이 현재 노드의 값보다 작으면
-          parent = cur;
-          cur = cur->left; // 이동
-          if (cur == t->nil){
-            n->parent = parent;
-            parent->left = n;
-            break;
-          }
-        } 
-        else { // 값이 같을때
+  if (t->root == t->nil){ // 루트가 비었을때
+    t->root = n;
+    n->color = RBTREE_BLACK;
+    n->parent = t->nil;
+    return n;
+  }
+  else{ 
+    node_t *parent = t->nil;
+    while (cur != t->nil && cur != NULL){
+      if (key > cur->key){ // 새로들어온 값이 현재 노드의 값보다 크면
+        parent = cur;
+        cur = cur->right; // 이동
+        if (cur == t->nil){
+          n->parent = parent;
+          parent->right = n;
           break;
         }
       }
-      n->left = n->right = t->nil;
-      n->color = RBTREE_RED;
+      else if (key < cur->key){ // 새로들어온 값이 현재 노드의 값보다 작으면
+        parent = cur;
+        cur = cur->left; // 이동
+        if (cur == t->nil){
+          n->parent = parent;
+          parent->left = n;
+          break;
+        }
+      } 
+      else { // 값이 같을때
+        break;
+      }
     }
+    n->left = n->right = t->nil;
+    n->color = RBTREE_RED;
+  }
     // RB트리 속성 조정 판별 필요
     // 캐이스별 별도 조정 함수 필요
 
