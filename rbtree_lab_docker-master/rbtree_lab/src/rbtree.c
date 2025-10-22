@@ -28,13 +28,16 @@ node_t *rbtree_insert(rbtree *t, const key_t key) {
 
   n->key = key;
   n->left = n->right = n->parent = t->nil;
-  n->color = RBTREE_BLACK;
+  n->color = RBTREE_RED;
 
+  node_t *parent = t->nil;
   node_t *cur = t->root; // 루트부터 시작
   
-    if (t->root == NULL){
+    if (t->root == t->nil){ // 루트가 비었을때
       t->root = n;
       n->color = RBTREE_BLACK;
+      n->parent = t->nil;
+      return n;
     }
     else{ 
       node_t *parent = t->nil;
